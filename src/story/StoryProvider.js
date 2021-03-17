@@ -24,7 +24,7 @@ export const StoryProvider = (props) => {
       },
     })
       .then((res) => res.json())
-      .then(setPost);
+      .then(setStory);
   };
   const getMyStories = () => {
     return fetch("http://localhost:8000/mystories", {
@@ -35,13 +35,25 @@ export const StoryProvider = (props) => {
       .then((res) => res.json())
       .then(setMyStories);
   };
+  const createStory = (story) => {
+    return fetch("http://localhost:8000/mystories", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("cs_user_id")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(story),
+    })
+      .then((res) => res.json())
+      .then(getMyStories);
+  };
   const deleteStory = (id) => {
     return fetch(`http://localhost:8000/stories/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Token ${localStorage.getItem("cs_user_id")}`,
       },
-    }).then(getPosts);
+    }).then(getMyStories);
   };
   return (
     <StoryContext.Provider
@@ -53,6 +65,7 @@ export const StoryProvider = (props) => {
         story,
         myStories,
         deleteStory,
+        createStory,
       }}
     >
       {props.children}
