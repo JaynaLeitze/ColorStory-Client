@@ -39,7 +39,7 @@ export const ColorStory = () => {
             return (
               <>
                 <NavBar />
-                {/* <ApplicationViews /> */}
+                <ApplicationViews />
               </>
             );
           } else {

@@ -13,17 +13,12 @@ export const NavBar = () => {
       </li> */}
       <li className="navbar__item">
         <Link className="navbar__link" to="/stories">
-          All Posts
+          Stories
         </Link>
       </li>
       <li className="navbar__item">
         <Link className="navbar__link" to="/mystories">
           My Stories
-        </Link>
-      </li>
-      <li className="navbar__item">
-        <Link className="navbar__link" to="/users">
-          Users
         </Link>
       </li>
       {localStorage.getItem("cs_user_id") !== null ? (
