@@ -5,8 +5,8 @@ are given 2000 characters to write a short story. Because different colors evoke
 
 ## ColorStory ERD
 
-![ERD](ColorStory ERD.png)
+![ERD](ColorStoryERD.png)
 
 ## ColorStory Wireframe
 
-![Wireframe](colorstory wireframe.png)
+![Wireframe](colorstorywireframe.png)
