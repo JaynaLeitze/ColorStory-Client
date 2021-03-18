@@ -3,6 +3,8 @@ import { Route } from "react-router-dom";
 import { StoryProvider } from "./story/StoryProvider";
 import { StoryList } from "./story/StoryList";
 import { Story } from "./story/Story";
+import { MyStory } from "./story/MyStory";
+import { MyStoryList } from "./story/MyStoryList";
 
 export const ApplicationViews = (props) => {
   return (
@@ -12,6 +14,14 @@ export const ApplicationViews = (props) => {
         <Route
           path="/stories/:storyId(\d+)"
           render={(props) => <Story {...props} />}
+        />
+        <Route
+          path="/mystories/:storyId(\d+)"
+          render={(props) => <Story {...props} />}
+        />
+        <Route
+          path="/mystories"
+          render={(props) => <MyStoryList {...props} />}
         />
       </StoryProvider>
     </>
