@@ -11,6 +11,7 @@ export const StoryForm = (props) => {
 
   const onSubmit = (story) => {
     story.user = parseInt(localStorage.getItem("cs_user_id"));
+    story.color = color;
     createStory(story);
     props.history.push("/mystories");
   };
