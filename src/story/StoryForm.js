@@ -1,14 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Route } from "react-router-dom";
 import { randomColor } from "randomcolor";
 import { StoryContext } from "./StoryProvider";
+import { useHover } from "../useHover";
 
 export const StoryForm = (props) => {
   const { register, handleSubmit } = useForm();
-  const { createStory } = useContext(StoryContext);
+  const { createStory, randomWord, word } = useContext(StoryContext);
   const color = randomColor();
 
+  useEffect(() => {
+    randomWord();
+  }, []);
+
+  console.log(word);
   const onSubmit = (story) => {
     story.user = parseInt(localStorage.getItem("cs_user_id"));
     story.color = color;
@@ -23,6 +29,11 @@ export const StoryForm = (props) => {
       <form className="storyForm" onSubmit={handleSubmit(onSubmit)}>
         <div style={{ width: 150, height: 150, backgroundColor: color }}>
           Color Prompt
+        </div>
+        <div className="randomWord">
+          {word.map((w) => {
+            return <div>Word Prompt:{w.word}</div>;
+          })}
         </div>
         <label>Write Your Story</label>
         <textarea

@@ -6,6 +6,7 @@ export const StoryProvider = (props) => {
   const [stories, setStories] = useState([]);
   const [story, setStory] = useState([]);
   const [myStories, setMyStories] = useState([]);
+  const [word, setWord] = useState([]);
 
   const getStories = () => {
     return fetch("http://localhost:8000/stories", {
@@ -55,6 +56,17 @@ export const StoryProvider = (props) => {
       },
     }).then(getMyStories);
   };
+  const randomWord = () => {
+    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "b13a05e7a8msh784ea140147c6e4p1b275bjsn12d309bd9bcc",
+        "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+      },
+    })
+      .then((res) => res.json())
+      .then(setWord);
+  };
   return (
     <StoryContext.Provider
       value={{
@@ -66,6 +78,8 @@ export const StoryProvider = (props) => {
         myStories,
         deleteStory,
         createStory,
+        randomWord,
+        word,
       }}
     >
       {props.children}
