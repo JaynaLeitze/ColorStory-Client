@@ -5,6 +5,7 @@ import { StoryList } from "./story/StoryList";
 import { Story } from "./story/Story";
 import { MyStory } from "./story/MyStory";
 import { MyStoryList } from "./story/MyStoryList";
+import { StoryForm } from "./story/StoryForm";
 
 export const ApplicationViews = (props) => {
   return (
@@ -22,6 +23,10 @@ export const ApplicationViews = (props) => {
         <Route
           path="/mystories"
           render={(props) => <MyStoryList {...props} />}
+        />
+        <Route
+          path="/writestory"
+          render={(props) => <StoryForm {...props} />}
         />
       </StoryProvider>
     </>
