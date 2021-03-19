@@ -6,7 +6,7 @@ export const StoryProvider = (props) => {
   const [stories, setStories] = useState([]);
   const [story, setStory] = useState([]);
   const [myStories, setMyStories] = useState([]);
-  const [word, setWord] = useState([]);
+  const [word, setWord] = useState({});
 
   const getStories = () => {
     return fetch("http://localhost:8000/stories", {

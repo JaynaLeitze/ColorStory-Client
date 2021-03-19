@@ -18,6 +18,7 @@ export const StoryForm = (props) => {
   const onSubmit = (story) => {
     story.user = parseInt(localStorage.getItem("cs_user_id"));
     story.color = color;
+    story.word_prompt = word.word;
     createStory(story);
     props.history.push("/mystories");
   };
@@ -31,9 +32,7 @@ export const StoryForm = (props) => {
           Color Prompt
         </div>
         <div className="randomWord">
-          {word.map((w) => {
-            return <div>Word Prompt:{w.word}</div>;
-          })}
+          <div>Word Prompt:{word.word}</div>;
         </div>
         <label>Write Your Story</label>
         <textarea
@@ -49,6 +48,13 @@ export const StoryForm = (props) => {
           ref={register}
           placeholder="Burt Macklin, FBI"
         />
+        <input
+          name="private"
+          type="radio"
+          ref={register}
+          defaultValue="False"
+        />
+        Private Story
         <input type="submit" />
       </form>
     </article>
