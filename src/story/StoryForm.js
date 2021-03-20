@@ -6,7 +6,7 @@ import { StoryContext } from "./StoryProvider";
 import { useHover } from "../useHover";
 
 export const StoryForm = (props) => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, control } = useForm();
   const { createStory, randomWord, word } = useContext(StoryContext);
   const [toggle, setToggle] = useState(false);
   const [color, setColor] = useState("");
@@ -58,8 +58,8 @@ export const StoryForm = (props) => {
           name="private"
           type="checkbox"
           ref={register}
-          value={!toggle}
-          onChange={() => setToggle(!toggle)}
+          checked={!toggle}
+          onClick={() => setToggle(!toggle)}
         />
         <label>Private</label>
 
