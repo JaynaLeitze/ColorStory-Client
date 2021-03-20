@@ -4,7 +4,7 @@ export const StoryContext = React.createContext();
 
 export const StoryProvider = (props) => {
   const [stories, setStories] = useState([]);
-  const [story, setStory] = useState([]);
+  const [story, setStory] = useState({ user: {} });
   const [myStories, setMyStories] = useState([]);
   const [word, setWord] = useState({});
 

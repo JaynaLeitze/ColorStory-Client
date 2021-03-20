@@ -59,7 +59,7 @@ export const StoryForm = (props) => {
           type="checkbox"
           ref={register}
           checked={!toggle}
-          onClick={() => setToggle(!toggle)}
+          onChange={() => setToggle(!toggle)}
         />
         <label>Private</label>
 
