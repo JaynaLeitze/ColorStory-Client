@@ -6,7 +6,7 @@ import { StoryContext } from "./StoryProvider";
 import { useHover } from "../useHover";
 
 export const StoryForm = (props) => {
-  const { register, handleSubmit, control } = useForm();
+  const { register, handleSubmit } = useForm();
   const { createStory, randomWord, word } = useContext(StoryContext);
   const [toggle, setToggle] = useState(false);
   const [color, setColor] = useState("");
@@ -16,6 +16,7 @@ export const StoryForm = (props) => {
   useEffect(() => {
     randomWord();
   }, []);
+
   useEffect(() => {
     const color = randomColor();
     setColor(color);
@@ -39,6 +40,7 @@ export const StoryForm = (props) => {
       <form className="storyForm" onSubmit={handleSubmit(onSubmit)}>
         <div className="randomWord">
           <div>Word Prompt: {word.word}</div>
+          {/* <div>{word.results}</div> */}
         </div>
         <label>Write Your Story</label>
         <textarea
