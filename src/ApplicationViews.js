@@ -7,6 +7,7 @@ import { MyStory } from "./story/MyStory";
 import { MyStoryList } from "./story/MyStoryList";
 import { StoryForm } from "./story/StoryForm";
 import { StoryDetails } from "./story/StoryDetails";
+import { MyStoryDetails } from "./story/MyStoryDetails";
 
 export const ApplicationViews = (props) => {
   return (
@@ -22,6 +23,11 @@ export const ApplicationViews = (props) => {
           render={(props) => <StoryDetails {...props} />}
         />
         <Route
+          path="/mystories/:storyId(\d+)"
+          render={(props) => <MyStoryDetails {...props} />}
+        />
+        <Route
+          exact
           path="/mystories"
           render={(props) => <MyStoryList {...props} />}
         />

@@ -20,7 +20,7 @@ export const MyStory = ({ props, story }) => {
         <div className="myStories">
           <Link
             to={{
-              pathname: `/stories/${story.id}`,
+              pathname: `/mystories/${story.id}`,
               state: { chosenStory: story },
             }}
           >

@@ -6,9 +6,7 @@ import { StoryContext } from "./StoryProvider";
 import { useParams } from "react-router-dom";
 
 export const StoryDetails = (props) => {
-  const { getSingleStory, deleteStory, story, setStory } = useContext(
-    StoryContext
-  );
+  const { getSingleStory, story, setStory } = useContext(StoryContext);
   //   const { comments, relatedComments, getCommentsByPostId } = useContext(
   //     CommentContext
   //   );
@@ -19,43 +17,26 @@ export const StoryDetails = (props) => {
 
   useEffect(() => {
     // const postId = parseInt(props.match.params.postId)
-    getSingleStory(storyId).then(setStory);
+    getSingleStory(storyId);
     // getCommentsByPostId(postId).then(setPost(post));
   }, []);
-
-  const confirmDelete = () => {
-    const d = window.confirm("Would you like to delete this?");
-    if (d === true) {
-      deleteStory(storyId).then(() => {
-        props.history.push("/mystories");
-      });
-    }
-  };
 
   console.log(story);
   return (
     <>
+      <div
+        style={{ width: 150, height: 150, backgroundColor: `${story.color}` }}
+      >
+        Word Prompt: {story.word_prompt}
+      </div>
       <div>{story.title}</div>
-      <div>{story.created_on}</div>
+      <div>Date: {story.created_on}</div>
+      <div>Author: {story.user.username}</div>
       <div>{story.content}</div>
-      <div>Author:{story.user.username}</div>
-      {/* {parseInt(localStorage.getItem("cs_user_id")) ===
-        story.user(
-          <>
-            <button
-              onClick={() => {
-                confirmDelete();
-              }}
-            >
-              Delete Post
-            </button>
-          </>
-        )} */}
     </>
   );
-};
-{
-  /* <h3>Comments</h3>
+  {
+    /* <h3>Comments</h3>
       {relatedComments.map((commentObj) => (
         <Comment key={commentObj.id} comment={commentObj} props={props} />
       ))}
@@ -68,4 +49,5 @@ export const StoryDetails = (props) => {
         Add a Comment
       </Link>
     </> */
-}
+  }
+};

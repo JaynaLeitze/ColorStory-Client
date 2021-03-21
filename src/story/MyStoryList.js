@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 import { StoryContext } from "./StoryProvider";
-import { Story } from "./Story";
+import { MyStory } from "./MyStory";
 import { Link } from "react-router-dom";
 
 export const MyStoryList = (props) => {
@@ -14,7 +14,7 @@ export const MyStoryList = (props) => {
     <div>
       <h3>My Stories</h3>
       {myStories.map((s) => (
-        <Story key={s.id} story={s} props={props} />
+        <MyStory key={s.id} story={s} props={props} />
       ))}
       <button>
         <Link to={"/writestory"}>Write Story</Link>
