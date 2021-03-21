@@ -1,17 +1,26 @@
-import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import { StoryContext } from "./StoryProvider";
 import { theme } from "../theme";
 import { Grommet } from "grommet";
+import { StoryDetails } from "./StoryDetails";
 
-export const MyStory = ({ story, props }) => {
+export const MyStory = ({ props, story }) => {
+  //   const { getSingleStory, story } = useContext(StoryContext);
+  //   console.log(props);
+  //   const storyId = parseInt(props.story.id);
+  //   useEffect(() => {
+  //     getSingleStory(storyId);
+  //   }, []);
+  //   console.log(storyId);
+
   return (
     <Grommet theme={theme}>
       <div style={{ backgroundColor: `${story.color}` }}>
-        <div className="stories">
+        <div className="myStories">
           <Link
             to={{
-              pathname: `/stories/${story.id}`,
+              pathname: `/mystories/${story.id}`,
               state: { chosenStory: story },
             }}
           >

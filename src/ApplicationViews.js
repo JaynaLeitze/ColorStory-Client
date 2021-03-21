@@ -6,21 +6,28 @@ import { Story } from "./story/Story";
 import { MyStory } from "./story/MyStory";
 import { MyStoryList } from "./story/MyStoryList";
 import { StoryForm } from "./story/StoryForm";
+import { StoryDetails } from "./story/StoryDetails";
+import { MyStoryDetails } from "./story/MyStoryDetails";
 
 export const ApplicationViews = (props) => {
   return (
     <>
       <StoryProvider>
-        <Route path="/stories" render={(props) => <StoryList {...props} />} />
+        <Route
+          exact
+          path="/stories"
+          render={(props) => <StoryList {...props} />}
+        />
         <Route
           path="/stories/:storyId(\d+)"
-          render={(props) => <Story {...props} />}
+          render={(props) => <StoryDetails {...props} />}
         />
         <Route
           path="/mystories/:storyId(\d+)"
-          render={(props) => <Story {...props} />}
+          render={(props) => <MyStoryDetails {...props} />}
         />
         <Route
+          exact
           path="/mystories"
           render={(props) => <MyStoryList {...props} />}
         />
