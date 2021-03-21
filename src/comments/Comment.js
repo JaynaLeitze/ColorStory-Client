@@ -18,43 +18,54 @@ export const Comment = ({ comment, props }) => {
       });
     }
   };
-
-  if (localStorage.getItem("cs_user_id")) {
-    return (
+  console.log(comment);
+  return comment.is_current_user ? (
+    <div>
+      <div>Comment content: {comment.content}</div>
+      <div>Story Title: {comment.story.title}</div>
+      <div>Author: {comment.author.username}</div>
       <div>
-        <div>Comment content: {comment.content}</div>
-        <div>Story Title: {comment.story.title}</div>
-        <div>Author: {comment.author.username}</div>
-        <div>
-          Date Created on:{" "}
-          {date.toLocaleString("en-US", {
-            year: "numeric",
-            month: "numeric",
-            day: "numeric",
-            timeZone: "America/Chicago",
-          })}
-        </div>
-        <button
-          onClick={() => {
-            confirmDeleteComment();
-          }}
-        >
-          Delete Comment
-        </button>
-        <button
-          onClick={() => {
-            props.history.push({
-              pathname: `/comments/edit/${comment.id}`,
-              commentId: comment.id,
-              state: { chosenStory: storyId },
-            });
-          }}
-        >
-          Edit Comment
-        </button>
+        Date Created on:{" "}
+        {date.toLocaleString("en-US", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          timeZone: "America/Chicago",
+        })}
       </div>
-    );
-  } else {
-    return <div>No comments</div>;
-  }
+      <button
+        onClick={() => {
+          confirmDeleteComment();
+        }}
+      >
+        Delete Comment
+      </button>
+      <button
+        onClick={() => {
+          props.history.push({
+            pathname: `/comments/edit/${comment.id}`,
+            commentId: comment.id,
+            state: { chosenStory: storyId },
+          });
+        }}
+      >
+        Edit Comment
+      </button>
+    </div>
+  ) : (
+    <div>
+      <div>Comment content: {comment.content}</div>
+      <div>Story Title: {comment.story.title}</div>
+      <div>Author: {comment.author.username}</div>
+      <div>
+        Date Created on:{" "}
+        {date.toLocaleString("en-US", {
+          year: "numeric",
+          month: "numeric",
+          day: "numeric",
+          timeZone: "America/Chicago",
+        })}
+      </div>
+    </div>
+  );
 };
