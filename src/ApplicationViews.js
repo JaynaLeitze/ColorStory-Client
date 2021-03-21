@@ -9,6 +9,7 @@ import { StoryForm } from "./story/StoryForm";
 import { StoryDetails } from "./story/StoryDetails";
 import { MyStoryDetails } from "./story/MyStoryDetails";
 import { CommentProvider } from "./comments/CommentProvider";
+import { CommentForm } from "./comments/CommentForm";
 
 export const ApplicationViews = (props) => {
   return (
@@ -36,6 +37,10 @@ export const ApplicationViews = (props) => {
           <Route
             path="/writestory"
             render={(props) => <StoryForm {...props} />}
+          />
+          <Route
+            path="/stories/addcomment"
+            render={(props) => <CommentForm {...props} />}
           />
         </CommentProvider>
       </StoryProvider>

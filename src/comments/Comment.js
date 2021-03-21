@@ -21,8 +21,8 @@ export const Comment = ({ comment, props }) => {
     return (
       <div>
         <div>Comment content: {comment.content}</div>
-        <div>Relevant post id: {comment.story_id}</div>
-        <div>Author: {comment.username}</div>
+        <div>Story Title: {comment.story.title}</div>
+        <div>Author: {comment.author.username}</div>
         <div>
           Date Created on:{" "}
           {date.toLocaleString("en-US", {
