@@ -1,24 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StoryContext } from "./StoryProvider";
-// import { CommentContext } from "../comments/CommentProvider";
-// import { Comment } from "../comments/Comment";
-// import { AllPost } from "./AllPost";
-import { useParams } from "react-router-dom";
+import { CommentContext } from "../comments/CommentProvider";
+import { Comment } from "../comments/Comment";
+import { useParams, Link } from "react-router-dom";
 
 export const StoryDetails = (props) => {
   const { getSingleStory, story, setStory } = useContext(StoryContext);
-  //   const { comments, relatedComments, getCommentsByPostId } = useContext(
-  //     CommentContext
-  //   );
+  const { comments, relatedComments, getCommentsByStoryId } = useContext(
+    CommentContext
+  );
 
   console.log(props);
   const storyId = parseInt(useParams().storyId);
   console.log(storyId);
 
   useEffect(() => {
-    // const postId = parseInt(props.match.params.postId)
+    const storyId = parseInt(props.match.params.storyId);
     getSingleStory(storyId);
-    // getCommentsByPostId(postId).then(setPost(post));
+    getCommentsByStoryId(storyId).then(setStory(story));
   }, []);
 
   console.log(story);
@@ -33,21 +32,19 @@ export const StoryDetails = (props) => {
       <div>Date: {story.created_on}</div>
       <div>Author: {story.user.username}</div>
       <div>{story.content}</div>
-    </>
-  );
-  {
-    /* <h3>Comments</h3>
+
+      <h3>Comments</h3>
       {relatedComments.map((commentObj) => (
         <Comment key={commentObj.id} comment={commentObj} props={props} />
       ))}
       <Link
         to={{
-          pathname: `/posts/addcomment`,
-          state: { chosenPost: post },
+          pathname: `/stories/addcomment`,
+          state: { chosenStory: story },
         }}
       >
         Add a Comment
       </Link>
-    </> */
-  }
+    </>
+  );
 };
