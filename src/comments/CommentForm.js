@@ -37,11 +37,13 @@ export const CommentForm = (props) => {
     if (editMode) {
       updateComment({
         id: comment.id,
-        story_id: comment.story_id,
+        story_id: comment.story.id,
         authorId,
         content: data.content,
         created_on: comment.created_on,
-      }).then(() => props.history.push(`/stories/${comment.story_id}`));
+      }).then(() => {
+        props.history.push(`/stories/${comment.story.id}`);
+      });
     } else {
       console.log(data.content);
       addComment({
