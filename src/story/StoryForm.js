@@ -7,11 +7,30 @@ import { useHover } from "../useHover";
 
 export const StoryForm = (props) => {
   const { register, handleSubmit } = useForm();
-  const { createStory, randomWord, word } = useContext(StoryContext);
+  const {
+    createStory,
+    randomWord,
+    word,
+    getMySingleStory,
+    setMyStory,
+    myStory,
+    updateStory,
+  } = useContext(StoryContext);
   const [toggle, setToggle] = useState(false);
   const [color, setColor] = useState("");
+  const storyId = props.match.params.storyId;
 
-  console.log(toggle);
+  const editMode = props.match.params.hasOwnProperty("storyId");
+
+  const getStoryInEditMode = () => {
+    if (editMode) {
+      getMySingleStory(storyId);
+    }
+  };
+  console.log(myStory);
+  useEffect(() => {
+    getStoryInEditMode();
+  }, [myStory]);
 
   useEffect(() => {
     randomWord();
@@ -24,22 +43,37 @@ export const StoryForm = (props) => {
 
   console.log(word);
   const onSubmit = (story) => {
-    story.user = parseInt(localStorage.getItem("cs_user_id"));
-    story.color = color;
-    story.word_prompt = word.word;
-    createStory(story);
-    props.history.push("/mystories");
+    if (editMode) {
+      story.id = myStory.id;
+      story.user = myStory.user;
+      story.color = myStory.color;
+      story.word_prompt = myStory.word_prompt;
+      updateStory(story);
+      props.history.push(`/mystories/${storyId}`);
+    } else {
+      story.user = parseInt(localStorage.getItem("cs_user_id"));
+      story.color = color;
+      story.word_prompt = word.word;
+      createStory(story);
+      props.history.push("/mystories");
+    }
   };
 
   return (
     <article className="writeStory">
-      <h1>Create your ColorStory</h1>
-      <div style={{ width: 150, height: 150, backgroundColor: color }}>
+      <h1>{editMode ? "Update your ColorStory" : "Create your ColorStory"}</h1>
+      <div
+        style={{
+          width: 150,
+          height: 150,
+          backgroundColor: editMode ? myStory.color : color,
+        }}
+      >
         Color Prompt
       </div>
       <form className="storyForm" onSubmit={handleSubmit(onSubmit)}>
         <div className="randomWord">
-          <div>Word Prompt: {word.word}</div>
+          <div>Word Prompt: {editMode ? myStory.word_prompt : word.word}</div>
           {/* <div>{word.results}</div> */}
         </div>
         <label>Write Your Story</label>

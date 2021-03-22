@@ -46,6 +46,10 @@ export const ApplicationViews = (props) => {
             path="/comments/edit/:commentId(\d+)"
             render={(props) => <CommentForm {...props} />}
           />
+          <Route
+            path="/mystories/edit/:storyId(\d+)"
+            render={(props) => <StoryForm {...props} />}
+          />
         </CommentProvider>
       </StoryProvider>
     </>
