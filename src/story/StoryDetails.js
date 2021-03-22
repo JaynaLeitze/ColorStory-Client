@@ -10,17 +10,12 @@ export const StoryDetails = (props) => {
     CommentContext
   );
 
-  console.log(props);
-  const storyId = parseInt(useParams().storyId);
-  console.log(storyId);
-
   useEffect(() => {
     const storyId = parseInt(props.match.params.storyId);
     getSingleStory(storyId);
     getCommentsByStoryId(storyId).then(setStory(story));
   }, []);
 
-  console.log(story);
   return (
     <>
       <div
