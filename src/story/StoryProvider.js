@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { keys } from "../Settings.js";
 
 export const StoryContext = React.createContext();
 
@@ -80,7 +81,7 @@ export const StoryProvider = (props) => {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
       method: "GET",
       headers: {
-        "x-rapidapi-key": "b13a05e7a8msh784ea140147c6e4p1b275bjsn12d309bd9bcc",
+        "x-rapidapi-key": `${keys.WordsAPIKey}`,
         "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
       },
     })
