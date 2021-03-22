@@ -84,7 +84,7 @@ export const StoryForm = (props) => {
           type="text"
           ref={register}
           placeholder="Once upon a time"
-          defaultValue={myStory.content}
+          defaultValue={editMode ? myStory.content : ""}
         />
         <label>Title Your Story:</label>
         <input
@@ -92,7 +92,7 @@ export const StoryForm = (props) => {
           type="text"
           ref={register}
           placeholder="Burt Macklin, FBI"
-          defaultValue={myStory.title}
+          defaultValue={editMode ? myStory.title : ""}
         />
         <input
           name="private"
