@@ -9,19 +9,19 @@ import { NavBar } from "./NavBar";
 import { Login } from "./auth/login";
 import { Register } from "./auth/register";
 
-const AppBar = (props) => (
-  <Box
-    tag="header"
-    direction="row"
-    align="center"
-    justify="between"
-    background="blue!"
-    pad={{ left: "medium", right: "small", vertical: "small" }}
-    elevation="medium"
-    style={{ zIndex: "1" }}
-    {...props}
-  />
-);
+// const AppBar = (props) => (
+//   <Box
+//     tag="header"
+//     direction="row"
+//     align="center"
+//     justify="between"
+//     background="blue!"
+//     pad={{ left: "medium", right: "small", vertical: "small" }}
+//     elevation="medium"
+//     style={{ zIndex: "1" }}
+//     {...props}
+//   />
+// );
 export const ColorStory = () => {
   return (
     <Grommet theme={theme}>
@@ -35,10 +35,9 @@ export const ColorStory = () => {
           if (localStorage.getItem("cs_user_id")) {
             return (
               <>
-                <AppBar>
-                  <div height="2rem"></div>
-                  <NavBar />
-                </AppBar>
+                <div height="2rem"></div>
+                <NavBar />
+
                 <ApplicationViews />
               </>
             );
