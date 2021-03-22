@@ -53,7 +53,7 @@ export const MyStoryDetails = (props) => {
           });
         }}
       >
-        Edit Comment
+        Edit Story
       </button>
       <h3>Comments</h3>
       {relatedComments.map((commentObj) => (
