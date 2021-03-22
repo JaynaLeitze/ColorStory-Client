@@ -27,21 +27,23 @@ export const StoryForm = (props) => {
       getMySingleStory(storyId);
     }
   };
-  console.log(myStory);
   useEffect(() => {
     getStoryInEditMode();
   }, [myStory]);
 
   useEffect(() => {
-    randomWord();
+    if (editMode != true) {
+      randomWord();
+    }
   }, []);
 
   useEffect(() => {
-    const color = randomColor();
-    setColor(color);
+    if (editMode != true) {
+      const color = randomColor();
+      setColor(color);
+    }
   }, []);
 
-  console.log(word);
   const onSubmit = (story) => {
     if (editMode) {
       story.id = myStory.id;
@@ -82,6 +84,7 @@ export const StoryForm = (props) => {
           type="text"
           ref={register}
           placeholder="Once upon a time"
+          defaultValue={myStory.content}
         />
         <label>Title Your Story:</label>
         <input
@@ -89,12 +92,13 @@ export const StoryForm = (props) => {
           type="text"
           ref={register}
           placeholder="Burt Macklin, FBI"
+          defaultValue={myStory.title}
         />
         <input
           name="private"
           type="checkbox"
           ref={register}
-          checked={!toggle}
+          checked={toggle}
           onChange={() => setToggle(!toggle)}
         />
         <label>Private</label>
