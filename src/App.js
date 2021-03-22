@@ -30,15 +30,15 @@ export const ColorStory = () => {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
       </div>
-      <AppBar>
-        <div height="4rem"></div>
-      </AppBar>
       <Route
         render={() => {
           if (localStorage.getItem("cs_user_id")) {
             return (
               <>
-                <NavBar />
+                <AppBar>
+                  <div height="2rem"></div>
+                  <NavBar />
+                </AppBar>
                 <ApplicationViews />
               </>
             );
