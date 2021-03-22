@@ -1,12 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "./CommentProvider";
-import { useHistory } from "react-router-dom";
 
 export const Comment = ({ comment, props }) => {
   const { deleteComment } = useContext(CommentContext);
   const storyId = parseInt(comment.story.id);
   const date = new Date(comment.created_on);
-  const history = useHistory();
 
   const confirmDeleteComment = () => {
     const prompt = window.confirm(
@@ -18,7 +16,6 @@ export const Comment = ({ comment, props }) => {
       });
     }
   };
-  console.log(comment);
   return comment.is_current_user ? (
     <div>
       <div>Comment content: {comment.content}</div>

@@ -66,6 +66,16 @@ export const StoryProvider = (props) => {
       },
     }).then(getMyStories);
   };
+  const updateStory = (story) => {
+    return fetch(`http://localhost:8000/mystories/${story.id}`, {
+      method: "PUT",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("cs_user_id")}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(story),
+    }).then(getMyStories);
+  };
   const randomWord = () => {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
       method: "GET",
@@ -94,6 +104,7 @@ export const StoryProvider = (props) => {
         myStory,
         setMyStory,
         setStory,
+        updateStory,
       }}
     >
       {props.children}

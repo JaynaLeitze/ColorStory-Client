@@ -1,26 +1,24 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StoryContext } from "./StoryProvider";
-// import { CommentContext } from "../comments/CommentProvider";
-// import { Comment } from "../comments/Comment";
-// import { AllPost } from "./AllPost";
+import { CommentContext } from "../comments/CommentProvider";
+import { Comment } from "../comments/Comment";
 import { useParams } from "react-router-dom";
 
 export const MyStoryDetails = (props) => {
   const { getMySingleStory, deleteStory, myStory, setMyStory } = useContext(
     StoryContext
   );
-  //   const { comments, relatedComments, getCommentsByPostId } = useContext(
-  //     CommentContext
-  //   );
+  const { comments, relatedComments, getCommentsByStoryId } = useContext(
+    CommentContext
+  );
 
   const storyId = parseInt(useParams().storyId);
 
   useEffect(() => {
-    // const postId = parseInt(props.match.params.postId)
+    const storyId = parseInt(props.match.params.storyId);
     getMySingleStory(storyId);
-    // getCommentsByPostId(postId).then(setPost(post));
+    getCommentsByStoryId(storyId).then(setMyStory(myStory));
   }, []);
-  console.log(myStory);
 
   const confirmDelete = () => {
     const d = window.confirm("Would you like to delete this?");
@@ -48,6 +46,19 @@ export const MyStoryDetails = (props) => {
       >
         Delete Post
       </button>
+      <button
+        onClick={() => {
+          props.history.push({
+            pathname: `/mystories/edit/${myStory.id}`,
+          });
+        }}
+      >
+        Edit Comment
+      </button>
+      <h3>Comments</h3>
+      {relatedComments.map((commentObj) => (
+        <Comment key={commentObj.id} comment={commentObj} props={props} />
+      ))}
       )
     </>
   );
