@@ -1,4 +1,6 @@
 import logo from "./logo.png";
+import ColorCircle from "./ColorCircle.png";
+import ColorStoryText from "./ColorStoryText.png";
 import { theme } from "./theme.js";
 import { Grommet, Box } from "grommet";
 import "./App.css";
@@ -27,7 +29,8 @@ export const ColorStory = () => {
     <Grommet theme={theme}>
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+          {/* <img src={ColorCircle} className="circle" alt="logo" /> */}
+          <img src={ColorStoryText} className="logoText" alt="logo-text" />
         </header>
       </div>
       <Route

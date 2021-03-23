@@ -78,7 +78,7 @@ export const StoryProvider = (props) => {
     }).then(getMyStories);
   };
   const randomWord = () => {
-    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
+    fetch("https://wordsapiv1.p.rapidapi.com/words/?definitions&random=true", {
       method: "GET",
       headers: {
         "x-rapidapi-key": `${keys.WordsAPIKey}`,
