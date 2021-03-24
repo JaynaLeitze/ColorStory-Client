@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { StoryContext } from "./StoryProvider";
+import "./MyStory.css";
 import { theme } from "../theme";
 import {
   Grommet,
@@ -11,6 +12,7 @@ import {
   CardHeader,
   Anchor,
   Text,
+  CardFooter,
 } from "grommet";
 import { StoryDetails } from "./StoryDetails";
 
@@ -37,36 +39,47 @@ export const MyStory = ({ props, story }) => {
 
   return (
     <Grommet theme={theme}>
-      <Box pad="small">
+      <Box pad="medium" direction="row">
         <Grid
-          gap="medium"
+          gap="small"
           rows="small"
           columns={{ count: "fit", size: "small" }}
         >
-          <Card background={story.color}>
-            <CardBody pad="small">
-              <CardHeader pad={{ horizontal: "small", vertical: "small" }}>
-                {story.title}
-                <Anchor
-                  href={{
-                    pathname: `/mystories/${story.id}`,
-                    state: { chosenStory: story },
-                  }}
-                ></Anchor>
-              </CardHeader>
-              <Identifier
-                pad="small"
-                title={story.title}
-                subTitle={story.content}
-                size="small"
-                align="start"
-              ></Identifier>
-
-              <div>Word Prompt: {story.word_prompt} </div>
-              {/* <div>{story.content}</div> */}
-              <div>Author: {story.user.username}</div>
-            </CardBody>
-          </Card>
+          <Box>
+            <Card background={story.color} width="350px" height="350px">
+              <CardBody pad="small">
+                <CardHeader
+                  pad={{ horizontal: "xsmall", vertical: "xsmall" }}
+                  align="center"
+                >
+                  <Link
+                    className="storyLink"
+                    to={{
+                      pathname: `/mystories/${story.id}`,
+                      state: { chosenStory: story },
+                    }}
+                  >
+                    {story.title}
+                  </Link>
+                </CardHeader>
+                <Identifier
+                  pad="small"
+                  title={story.word_prompt}
+                  subTitle={story.content}
+                  size="small"
+                  align="start"
+                ></Identifier>
+              </CardBody>
+              <CardFooter
+                pad={{ horizontal: "large ", vertical: "small" }}
+                justify="center"
+              >
+                <Text size="xsmall" textAlign="center">
+                  Author: {story.user.username}
+                </Text>
+              </CardFooter>
+            </Card>
+          </Box>
         </Grid>
       </Box>
     </Grommet>

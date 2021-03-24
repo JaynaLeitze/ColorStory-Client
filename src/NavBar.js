@@ -9,13 +9,16 @@ export const NavBar = () => {
   return (
     <Grommet theme={theme}>
       <Header background="blue!" pad="xxsmall">
-        <Box direction="row" align="center" gap="small">
-          {/* <Avatar src={src} /> */}
-        </Box>
-        <Nav direction="row" align="right">
+        <Nav
+          direction="row"
+          justify="between"
+          gap="large"
+          flex="true"
+          margin={{ left: "medium", right: "medium" }}
+        >
           <Anchor href="/stories " label="Stories" color="indigo!" />
           <Anchor href="/mystories" label="My Stories" color="indigo!" />
-          <Anchor href="/writestory" label="Write Story" color="indigo!" />
+          <Anchor href="/writestory" label="Write a Story" color="indigo!" />
           {localStorage.getItem("cs_user_id") !== null ? (
             <Button
               primary
