@@ -1,5 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CommentContext } from "./CommentProvider";
+import { theme } from "../theme";
+import {
+  Box,
+  Button,
+  Grommet,
+  Header,
+  Text,
+  Heading,
+  Paragraph,
+} from "grommet";
 
 export const Comment = ({ comment, props }) => {
   const { deleteComment } = useContext(CommentContext);
@@ -17,52 +27,61 @@ export const Comment = ({ comment, props }) => {
     }
   };
   return comment.is_current_user ? (
-    <div>
-      <div>Comment content: {comment.content}</div>
-      <div>Story Title: {comment.story.title}</div>
-      <div>Author: {comment.author.username}</div>
-      <div>
-        Date Created on:{" "}
-        {date.toLocaleString("en-US", {
-          year: "numeric",
-          month: "numeric",
-          day: "numeric",
-          timeZone: "America/Chicago",
-        })}
-      </div>
-      <button
-        onClick={() => {
-          confirmDeleteComment();
-        }}
-      >
-        Delete Comment
-      </button>
-      <button
-        onClick={() => {
-          props.history.push({
-            pathname: `/comments/edit/${comment.id}`,
-            commentId: comment.id,
-            state: { chosenStory: storyId },
-          });
-        }}
-      >
-        Edit Comment
-      </button>
-    </div>
+    <Grommet theme={theme}>
+      <Box justify="center">
+        <Text>{comment.content}</Text>
+        <Text size="xsmall">By: {comment.author.username}</Text>
+        <Text size="xsmall">
+          Date:{" "}
+          {date.toLocaleString("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            timeZone: "America/Chicago",
+          })}
+        </Text>
+        <Box direction="row">
+          <Button
+            primary
+            label="Delete Comment"
+            pad="small"
+            color="red!"
+            onClick={() => {
+              confirmDeleteComment();
+            }}
+          />
+
+          <Button
+            primary
+            label="Edit Comment"
+            pad="small"
+            color="green!"
+            onClick={() => {
+              props.history.push({
+                pathname: `/comments/edit/${comment.id}`,
+                commentId: comment.id,
+                state: { chosenStory: storyId },
+              });
+            }}
+          />
+        </Box>
+      </Box>
+    </Grommet>
   ) : (
-    <div>
-      <div>Comment content: {comment.content}</div>
-      <div>Story Title: {comment.story.title}</div>
-      <div>Author: {comment.author.username}</div>
-      <div>
-        Date Created on:{" "}
-        {date.toLocaleString("en-US", {
-          year: "numeric",
-          month: "numeric",
-          day: "numeric",
-          timeZone: "America/Chicago",
-        })}
-      </div>
-    </div>
+    <Grommet theme={theme}>
+      <Box justify="center" align="center">
+        <div>Comment: {comment.content}</div>
+        <div>By: {comment.author.username}</div>
+        <div>
+          Date Created on:{" "}
+          {date.toLocaleString("en-US", {
+            year: "numeric",
+            month: "numeric",
+            day: "numeric",
+            timeZone: "America/Chicago",
+          })}
+        </div>
+      </Box>
+    </Grommet>
   );
 };

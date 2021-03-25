@@ -10,10 +10,16 @@ import { StoryDetails } from "./story/StoryDetails";
 import { MyStoryDetails } from "./story/MyStoryDetails";
 import { CommentProvider } from "./comments/CommentProvider";
 import { CommentForm } from "./comments/CommentForm";
+import { Home } from "./LandingPage";
+import { Register } from "./auth/register";
 
 export const ApplicationViews = (props) => {
   return (
     <>
+      <Route exact path="/home">
+        <Home />
+      </Route>
+      <Route path="/register" render={(props) => <Register />} />
       <StoryProvider>
         <CommentProvider>
           <Route

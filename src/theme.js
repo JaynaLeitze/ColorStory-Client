@@ -99,7 +99,7 @@ export const theme = {
     },
     active: {
       background: "active-background",
-      color: "active-text",
+      color: "indigo!",
     },
     hover: {
       background: "active-background",
@@ -107,7 +107,7 @@ export const theme = {
     },
     selected: {
       background: "selected-background",
-      color: "selected-text",
+      color: "indigo!",
     },
     borderSize: {
       xsmall: "1px",
@@ -203,11 +203,11 @@ export const theme = {
   button: {
     border: {
       width: "2px",
-      radius: "21px",
+      radius: "5px",
     },
     padding: {
-      vertical: "5px",
-      horizontal: "26px",
+      vertical: "2px",
+      horizontal: "10px",
     },
   },
   calendar: {

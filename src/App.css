@@ -1,7 +1,17 @@
 .App {
   text-align: left;
 }
-
-.App-logo {
-  max-height: 10rem;
+.App-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.circle {
+  max-height: 8rem;
+}
+.logoText {
+  max-height: 8rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

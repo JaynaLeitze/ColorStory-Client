@@ -1,0 +1,10 @@
+.storyLink {
+  text-decoration: underline;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+.storyLink:active {
+  text-decoration: none;
+  color: aquamarine;
+}
