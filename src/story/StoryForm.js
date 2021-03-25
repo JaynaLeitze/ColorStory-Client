@@ -4,6 +4,20 @@ import { Route } from "react-router-dom";
 import { randomColor } from "randomcolor";
 import { StoryContext } from "./StoryProvider";
 import { useHover } from "../useHover";
+import {
+  Box,
+  Grommet,
+  Heading,
+  Form,
+  FormField,
+  Text,
+  TextInput,
+  TextArea,
+  CheckBox,
+  Button,
+} from "grommet";
+import { theme } from "../theme";
+import "./StoryForm.css";
 
 export const StoryForm = (props) => {
   const { register, handleSubmit } = useForm();
@@ -62,49 +76,65 @@ export const StoryForm = (props) => {
   };
 
   return (
-    <article className="writeStory">
-      <h1>{editMode ? "Update your ColorStory" : "Create your ColorStory"}</h1>
-      <div
-        style={{
-          width: 150,
-          height: 150,
-          backgroundColor: editMode ? myStory.color : color,
-        }}
-      >
-        Color Prompt
-      </div>
-      <form className="storyForm" onSubmit={handleSubmit(onSubmit)}>
-        <div className="randomWord">
-          <div>Word Prompt: {editMode ? myStory.word_prompt : word.word}</div>
-          {/* <div>{word.results}</div> */}
-        </div>
-        <label>Write Your Story</label>
-        <textarea
-          name="content"
-          type="text"
-          ref={register}
-          placeholder="Once upon a time"
-          defaultValue={editMode ? myStory.content : ""}
-        />
-        <label>Title Your Story:</label>
-        <input
-          name="title"
-          type="text"
-          ref={register}
-          placeholder="Burt Macklin, FBI"
-          defaultValue={editMode ? myStory.title : ""}
-        />
-        <input
-          name="private"
-          type="checkbox"
-          ref={register}
-          checked={toggle}
-          onChange={() => setToggle(!toggle)}
-        />
-        <label>Private</label>
+    <Grommet theme={theme}>
+      <Box className="writeStory" justify="center" align="center">
+        <Heading level="3" color="violet!">
+          {editMode ? "Update your ColorStory" : "Create your ColorStory"}
+        </Heading>
+        <Box direction="row" gap="medium">
+          <Box
+            justify="center"
+            align="center"
+            pad="small"
+            width="250px"
+            height="250px"
+            margin={{ bottom: "medium", top: "small" }}
+            background={editMode ? myStory.color : { color }}
+          >
+            <Text level="2">{editMode ? myStory.word_prompt : word.word}</Text>
+          </Box>
+          <Box direction="column">
+            <Form className="storyForm" onSubmit={handleSubmit(onSubmit)}>
+              <FormField>
+                <TextInput
+                  name="title"
+                  ref={register}
+                  placeholder="Give your story a title..."
+                  defaultValue={editMode ? myStory.title : ""}
+                />
+              </FormField>
+              <TextArea
+                className="textarea"
+                name="content"
+                size="large"
+                type="text"
+                level="6"
+                ref={register}
+                placeholder="Write Your Story"
+                defaultValue={editMode ? myStory.content : ""}
+              />
 
-        <input type="submit" />
-      </form>
-    </article>
+              <Box margin={{ top: "medium", bottom: "medium" }}>
+                <CheckBox
+                  name="private"
+                  label="Private"
+                  type="checkbox"
+                  ref={register}
+                  checked={toggle}
+                  onChange={() => setToggle(!toggle)}
+                />
+              </Box>
+              <Button
+                primary
+                label="Submit"
+                color="violet!"
+                pad="medium"
+                type="submit"
+              />
+            </Form>
+          </Box>
+        </Box>
+      </Box>
+    </Grommet>
   );
 };

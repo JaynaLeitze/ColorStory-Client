@@ -16,7 +16,7 @@ export const NavBar = () => {
           flex="true"
           margin={{ left: "medium", right: "medium" }}
         >
-          <Anchor href="/" label="Home" color="indigo!" />
+          <Anchor href="/home" label="Home" color="indigo!" />
           <Anchor href="/stories " label="Stories" color="indigo!" />
           <Anchor href="/mystories" label="My Stories" color="indigo!" />
           <Anchor href="/writestory" label="Write a Story" color="indigo!" />
