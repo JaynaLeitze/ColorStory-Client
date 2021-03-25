@@ -18,7 +18,7 @@ export const StoryList = (props) => {
             Stories
           </Text>
         </Header>
-        <Box direction="row-responsive">
+        <Box direction="row-responsive" wrap="true">
           {stories.map((s) => (
             <Story key={s.id} story={s} props={props} />
           ))}

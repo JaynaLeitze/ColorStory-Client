@@ -29,15 +29,15 @@ const Identifier = ({ children, title, subTitle, size, ...rest }) => (
 export const Story = ({ story, props }) => {
   return (
     <Grommet theme={theme}>
-      <Box pad="medium" direction="row">
+      <Box pad="medium" direction="row" wrap="true">
         <Grid
           gap="small"
           rows="small"
           columns={{ count: "fit", size: "small" }}
         >
-          <Box>
-            <Card background={story.color} width="350px" height="350px">
-              <CardBody pad="small">
+          <Box wrap="true">
+            <Card background={story.color}>
+              <CardBody pad="small" width="350px" height="350px">
                 <CardHeader
                   pad={{ horizontal: "xsmall", vertical: "xsmall" }}
                   align="center"
@@ -65,7 +65,7 @@ export const Story = ({ story, props }) => {
                 justify="center"
               >
                 <Text size="xsmall" textAlign="center">
-                  Author: {story.user.username}
+                  By: {story.user.username}
                 </Text>
               </CardFooter>
             </Card>

@@ -32,7 +32,7 @@ export const MyStoryList = (props) => {
             }}
           />
         </Box>
-        <Box direction="row-responsive">
+        <Box direction="row-responsive" wrap="true">
           {myStories.map((s) => (
             <MyStory key={s.id} story={s} props={props} />
           ))}

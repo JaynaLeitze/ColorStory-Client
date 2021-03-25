@@ -1,5 +1,16 @@
 import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { theme } from "../theme";
+import {
+  Button,
+  Box,
+  Grommet,
+  Heading,
+  Text,
+  Form,
+  FormField,
+  TextInput,
+} from "grommet";
 // import "./Auth.css"
 
 export const Register = (props) => {
@@ -47,99 +58,99 @@ export const Register = (props) => {
   };
 
   return (
-    <main style={{ textAlign: "center" }}>
-      <dialog className="dialog dialog--password" ref={passwordDialog}>
-        <div>Passwords do not match</div>
-        <button
-          className="button--close"
-          onClick={(e) => passwordDialog.current.close()}
-        >
-          Close
-        </button>
-      </dialog>
+    <Grommet theme="theme">
+      <Box align="center">
+        <Box>
+          <dialog className="dialog dialog--password" ref={passwordDialog}>
+            <div>Passwords do not match</div>
+            <button
+              className="button--close"
+              onClick={(e) => passwordDialog.current.close()}
+            >
+              Close
+            </button>
+          </dialog>
+        </Box>
+        <Box pad="large" justify="center" align="center">
+          <Form className="form--login" onSubmit={handleRegister}>
+            <Heading level="2" className="h3 mb-3 font-weight-normal">
+              Register an account
+            </Heading>
+            <FormField label="First Name">
+              <TextInput
+                ref={firstName}
+                type="text"
+                name="firstName"
+                className="form-control"
+                placeholder="First name"
+                required
+                autoFocus
+              />
+            </FormField>
+            <FormField label="Last Name">
+              <TextInput
+                ref={lastName}
+                type="text"
+                name="lastName"
+                className="form-control"
+                placeholder="Last name"
+                required
+              />
+            </FormField>
+            <FormField label="Username">
+              <TextInput
+                ref={username}
+                type="text"
+                name="username"
+                className="form-control"
+                placeholder="username"
+                required
+              />
+            </FormField>
+            <FormField label="Email address">
+              <TextInput
+                ref={email}
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Email address"
+                required
+              />
+            </FormField>
+            <FormField label="Password">
+              <TextInput
+                ref={password}
+                type="password"
+                name="password"
+                className="form-control"
+                placeholder="Password"
+                required
+              />
+            </FormField>
+            <FormField label="Verify Password">
+              <TextInput
+                ref={verifyPassword}
+                type="password"
+                name="verifyPassword"
+                className="form-control"
+                placeholder="Verify password"
+                required
+              />
+            </FormField>
 
-      <form className="form--login" onSubmit={handleRegister}>
-        <h1 className="h3 mb-3 font-weight-normal">Register an account</h1>
-        <fieldset>
-          <label htmlFor="firstName"> First Name </label>
-          <input
-            ref={firstName}
-            type="text"
-            name="firstName"
-            className="form-control"
-            placeholder="First name"
-            required
-            autoFocus
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="lastName"> Last Name </label>
-          <input
-            ref={lastName}
-            type="text"
-            name="lastName"
-            className="form-control"
-            placeholder="Last name"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="username"> Username </label>
-          <input
-            ref={username}
-            type="text"
-            name="username"
-            className="form-control"
-            placeholder="username"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="inputEmail"> Email address </label>
-          <input
-            ref={email}
-            type="email"
-            name="email"
-            className="form-control"
-            placeholder="Email address"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="inputPassword"> Password </label>
-          <input
-            ref={password}
-            type="password"
-            name="password"
-            className="form-control"
-            placeholder="Password"
-            required
-          />
-        </fieldset>
-        <fieldset>
-          <label htmlFor="verifyPassword"> Verify Password </label>
-          <input
-            ref={verifyPassword}
-            type="password"
-            name="verifyPassword"
-            className="form-control"
-            placeholder="Verify password"
-            required
-          />
-        </fieldset>
-        <fieldset
-          style={{
-            textAlign: "center",
-          }}
-        >
-          <button className="btn btn-1 btn-sep icon-send" type="submit">
-            Register
-          </button>
-        </fieldset>
-      </form>
-      <section className="link--register">
-        Already registered? <Link to="/login">Login</Link>
-      </section>
-    </main>
+            <Button
+              primary
+              label="register"
+              color="violet!"
+              align="center"
+              type="submit"
+            />
+          </Form>
+          <Box className="link--register">
+            Already registered? <Link to="/login">Login</Link>
+          </Box>
+        </Box>
+      </Box>
+    </Grommet>
   );
 };

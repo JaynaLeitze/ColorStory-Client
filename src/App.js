@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { ApplicationViews } from "./ApplicationViews";
 import { NavBar } from "./NavBar";
 import { Login } from "./auth/login";
+import { Home } from "./LandingPage";
 import { Register } from "./auth/register";
 
 // const AppBar = (props) => (
@@ -45,22 +46,20 @@ export const ColorStory = () => {
               </>
             );
           } else {
-            return <Redirect to="/login" />;
+            return <Redirect to="/Login" />;
           }
         }}
       />
-
       <Route
         path="/login"
         render={() => {
           if (localStorage.getItem("cs_user_id")) {
             return <Redirect to="/" />;
           } else {
-            return <Login />;
+            return <Home />;
           }
         }}
       />
-
       <Route
         path="/register"
         render={() => {

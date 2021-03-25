@@ -43,7 +43,6 @@ export const StoryForm = (props) => {
       setColor(color);
     }
   }, []);
-  console.log(word);
 
   const onSubmit = (story) => {
     if (editMode) {
