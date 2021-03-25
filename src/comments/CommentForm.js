@@ -1,6 +1,17 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { CommentContext } from "./CommentProvider";
+import {
+  Box,
+  Grommet,
+  Form,
+  FormField,
+  TextArea,
+  TextInput,
+  Heading,
+  Button,
+} from "grommet";
+import { theme } from "../theme";
 
 export const CommentForm = (props) => {
   const {
@@ -55,24 +66,30 @@ export const CommentForm = (props) => {
     }
   };
   return (
-    <form className="commentForm" onSubmit={handleSubmit(onSubmit)}>
-      <h2 className="commentForm__title">
-        {editMode ? "Update Comment" : "New Comment"}
-      </h2>
-      <fieldset>
-        <div className="form-group">
-          <input
-            name="content"
-            type="text"
-            ref={register}
-            placeholder="some notes..."
-          />
-        </div>
-      </fieldset>
+    <Grommet theme={theme}>
+      <Box pad="medium" width="400px" align="center">
+        <Form className="commentForm" onSubmit={handleSubmit(onSubmit)}>
+          <Heading level="3" className="commentForm__title">
+            {editMode ? "Update Comment" : "New Comment"}
+          </Heading>
+          <FormField>
+            <TextArea
+              name="content"
+              type="text"
+              ref={register}
+              placeholder="some notes..."
+            />
+          </FormField>
 
-      <button type="submit">
-        {editMode ? "Save Updates" : "Make Comment"}
-      </button>
-    </form>
+          <Button
+            primary
+            label={editMode ? "Save Updates" : "Add Comment"}
+            pad="medium"
+            color="green!"
+            type="submit"
+          ></Button>
+        </Form>
+      </Box>
+    </Grommet>
   );
 };

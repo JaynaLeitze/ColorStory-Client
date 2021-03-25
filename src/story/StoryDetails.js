@@ -36,7 +36,12 @@ export const StoryDetails = (props) => {
             height="175px"
             justify="center"
           >
-            <Heading level="5" justify="center" alignSelf="center">
+            <Heading
+              level="5"
+              justify="center"
+              alignSelf="center"
+              textAlign="center"
+            >
               {story.word_prompt}
             </Heading>
           </Box>
@@ -57,8 +62,15 @@ export const StoryDetails = (props) => {
         {relatedComments.map((commentObj) => (
           <Comment key={commentObj.id} comment={commentObj} props={props} />
         ))}
+        <Link
+          to={{
+            pathname: `/stories/addcomment`,
+            state: { chosenStory: story },
+          }}
+        >
+          Add a Comment
+        </Link>
       </Box>
-      )
     </Grommet>
   );
 };

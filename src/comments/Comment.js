@@ -28,10 +28,10 @@ export const Comment = ({ comment, props }) => {
   };
   return comment.is_current_user ? (
     <Grommet theme={theme}>
-      <Box>
-        <div>{comment.content}</div>
-        <div>Author: {comment.author.username}</div>
-        <div>
+      <Box justify="center">
+        <Text>{comment.content}</Text>
+        <Text size="xsmall">By: {comment.author.username}</Text>
+        <Text size="xsmall">
           Date:{" "}
           {date.toLocaleString("en-US", {
             year: "numeric",
@@ -39,33 +39,39 @@ export const Comment = ({ comment, props }) => {
             day: "numeric",
             timeZone: "America/Chicago",
           })}
-        </div>
-        <button
-          onClick={() => {
-            confirmDeleteComment();
-          }}
-        >
-          Delete Comment
-        </button>
-        <button
-          onClick={() => {
-            props.history.push({
-              pathname: `/comments/edit/${comment.id}`,
-              commentId: comment.id,
-              state: { chosenStory: storyId },
-            });
-          }}
-        >
-          Edit Comment
-        </button>
+        </Text>
+        <Box direction="row">
+          <Button
+            primary
+            label="Delete Comment"
+            pad="small"
+            color="red!"
+            onClick={() => {
+              confirmDeleteComment();
+            }}
+          />
+
+          <Button
+            primary
+            label="Edit Comment"
+            pad="small"
+            color="green!"
+            onClick={() => {
+              props.history.push({
+                pathname: `/comments/edit/${comment.id}`,
+                commentId: comment.id,
+                state: { chosenStory: storyId },
+              });
+            }}
+          />
+        </Box>
       </Box>
     </Grommet>
   ) : (
     <Grommet theme={theme}>
-      <div>
-        <div>Comment content: {comment.content}</div>
-        <div>Story Title: {comment.story.title}</div>
-        <div>Author: {comment.author.username}</div>
+      <Box justify="center" align="center">
+        <div>Comment: {comment.content}</div>
+        <div>By: {comment.author.username}</div>
         <div>
           Date Created on:{" "}
           {date.toLocaleString("en-US", {
@@ -75,7 +81,7 @@ export const Comment = ({ comment, props }) => {
             timeZone: "America/Chicago",
           })}
         </div>
-      </div>
+      </Box>
     </Grommet>
   );
 };

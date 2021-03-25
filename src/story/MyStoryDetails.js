@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { StoryContext } from "./StoryProvider";
 import { CommentContext } from "../comments/CommentProvider";
 import { Comment } from "../comments/Comment";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { theme } from "../theme";
 import {
   Box,
@@ -89,10 +89,18 @@ export const MyStoryDetails = (props) => {
         </Box>
       </Box>
       <Box>
-        <h3>Comments</h3>
+        <Heading level="3">Comments</Heading>
         {relatedComments.map((commentObj) => (
           <Comment key={commentObj.id} comment={commentObj} props={props} />
         ))}
+        <Link
+          to={{
+            pathname: `/stories/addcomment`,
+            state: { chosenStory: myStory },
+          }}
+        >
+          Add a Comment
+        </Link>
       </Box>
       )
     </Grommet>
